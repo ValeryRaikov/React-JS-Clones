@@ -12,7 +12,70 @@ import './Recommended.css';
 export default function Recommended() {
     return (
         <div className="recommended">
-            
+            <div className="side-video-list">
+                <img src={thumbnail1} />
+                <div className="vid-info">
+                    <h4>Best channel that help you to become a web developer</h4>
+                    <p>Great Stack</p>
+                    <p>199K views</p>
+                </div>
+            </div>
+            <div className="side-video-list">
+                <img src={thumbnail2} />
+                <div className="vid-info">
+                    <h4>Best channel that help you to become a web developer</h4>
+                    <p>Great Stack</p>
+                    <p>199K views</p>
+                </div>
+            </div>
+            <div className="side-video-list">
+                <img src={thumbnail3} />
+                <div className="vid-info">
+                    <h4>Best channel that help you to become a web developer</h4>
+                    <p>Great Stack</p>
+                    <p>199K views</p>
+                </div>
+            </div>
+            <div className="side-video-list">
+                <img src={thumbnail4} />
+                <div className="vid-info">
+                    <h4>Best channel that help you to become a web developer</h4>
+                    <p>Great Stack</p>
+                    <p>199K views</p>
+                </div>
+            </div>
+            <div className="side-video-list">
+                <img src={thumbnail5} />
+                <div className="vid-info">
+                    <h4>Best channel that help you to become a web developer</h4>
+                    <p>Great Stack</p>
+                    <p>199K views</p>
+                </div>
+            </div>
+            <div className="side-video-list">
+                <img src={thumbnail6} />
+                <div className="vid-info">
+                    <h4>Best channel that help you to become a web developer</h4>
+                    <p>Great Stack</p>
+                    <p>199K views</p>
+                </div>
+            </div>
+            <div className="side-video-list">
+                <img src={thumbnail7} />
+                <div className="vid-info">
+                    <h4>Best channel that help you to become a web developer</h4>
+                    <p>Great Stack</p>
+                    <p>199K views</p>
+                </div>
+            </div>
+            <div className="side-video-list">
+                <img src={thumbnail8} />
+                <div className="vid-info">
+                    <h4>Best channel that help you to become a web developer</h4>
+                    <p>Great Stack</p>
+                    <p>199K views</p>
+                </div>
+            </div>
         </div>
     );
 }
