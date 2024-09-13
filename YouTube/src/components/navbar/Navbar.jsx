@@ -8,11 +8,11 @@ import profile_icon from '../../assets/jack.png';
 
 import './Navbar.css';
 
-export default function Navbar() {
+export default function Navbar({ setSidebar }) {
     return (
         <nav className="flex-div">
             <div className="nav-left flex-div">
-                <img className="menu-icon" src={menu_icon} />
+                <img className="menu-icon" src={menu_icon} onClick={() => setSidebar(prev => !prev)} />
                 <img className="logo-icon" src={logo} />
             </div>
             <div className="nav-middle flex-div">
