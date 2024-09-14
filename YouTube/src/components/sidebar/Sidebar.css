@@ -63,3 +63,9 @@
 .side-link.active p {
     color: #ff0000;
 }
+
+@media screen and (max-width: 900px) {
+    .sidebar {
+        display: none;
+    }
+}
