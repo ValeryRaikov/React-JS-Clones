@@ -26,6 +26,7 @@ export default function PlayVideo() {
     const [videoDisliked, setVideoDisliked] = useState(false);
     const [commentLikes, setCommentLikes] = useState({});
     const [commentLikedStates, setCommentLikedStates] = useState({});
+    const [subscribed, setSubscribed] = useState(false);
     const [error, setError] = useState('');
 
     const fetchVideoData = async () => {
@@ -186,7 +187,12 @@ export default function PlayVideo() {
                     <p>{videoData?.snippet.channelTitle}</p>
                     <span>{converter(channelData?.statistics.subscriberCount)} subscribers</span>
                 </div>
-                <button>Subscribe</button>
+                <button 
+                    onClick={() => setSubscribed(prev => !prev)}
+                    style={{backgroundColor: subscribed ? '#ff0000' : '#c5c5c5', color: subscribed ? '#fff' : '#000'}}
+                >
+                    {!subscribed ? 'Subscribe': 'Unsubscribe'}
+                </button>
             </div>
             <div className="vid-description">
                 <p>{videoData?.snippet.description}</p>
