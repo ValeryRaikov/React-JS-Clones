@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import menu_icon from '../../assets/menu.png';
 import logo from '../../assets/logo.png';
 import search_icon from '../../assets/search.png';
@@ -13,7 +15,7 @@ export default function Navbar({ setSidebar }) {
         <nav className="flex-div">
             <div className="nav-left flex-div">
                 <img className="menu-icon" src={menu_icon} onClick={() => setSidebar(prev => !prev)} />
-                <img className="logo-icon" src={logo} />
+                <Link to='/'><img className="logo-icon" src={logo} /></Link>
             </div>
             <div className="nav-middle flex-div">
                 <div className="search-box flex-div">

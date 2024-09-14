@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import moment from 'moment';
+
 import { API_KEY } from '../../data';
 import { converter } from '../../utils';
 
@@ -41,7 +43,7 @@ export default function Feed({ category }) {
                             <img src={item.snippet.thumbnails.medium.url} />
                             <h2>{item.snippet.title}</h2>
                             <h3>{item.snippet.channelTitle}</h3>
-                            <p>{converter(item.statistics.viewCount)} views &bull; {} days ago</p>
+                            <p>{converter(item.statistics.viewCount)} views &bull; {moment(item.snippet.publishedAt).fromNow()}</p>
                         </Link>
                 )
             })}
