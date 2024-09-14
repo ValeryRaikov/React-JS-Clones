@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 import moment from 'moment';
 
@@ -14,7 +15,9 @@ import { converter } from '../../utils';
 
 import './PlayVideo.css';
 
-export default function PlayVideo({ videoId }) {
+export default function PlayVideo() {
+    const { videoId } = useParams();
+
     const [videoData, setVideoData] = useState(null);
     const [channelData, setChannelData] = useState(null);
     const [commentData, setCommentData] = useState([]);
@@ -74,7 +77,7 @@ export default function PlayVideo({ videoId }) {
 
     useEffect(() => {
         fetchVideoData();
-    }, []);
+    }, [videoId]);
 
     useEffect(() => {
         if (videoData) {

@@ -11,7 +11,7 @@ export default function Video() {
     return (
         <div className="play-container">
             <PlayVideo videoId={videoId} categoryId={categoryId} />
-            <Recommended />
+            <Recommended categoryId={categoryId} />
         </div>
     );
 }
