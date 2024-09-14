@@ -32,14 +32,17 @@ export default function Feed({ category }) {
 
     return (
         <div className="feed">
-            {data.map(item => {
-                return (
-                    <Link to={`video/${item.snippet.categoryId}/${item.id}`} key={item.id} className="card">
-                        <img src={item.snippet.thumbnails.medium.url} />
-                        <h2>{item.snippet.title}</h2>
-                        <h3>{item.snippet.channelTitle}</h3>
-                        <p>{converter(item.statistics.viewCount)} views &bull; {} days ago</p>
-                    </Link>
+            {error && <p className="error-msg">{error}</p>}
+            {loading 
+                ? <p className="loading-msg">Loading...</p>
+                : data.map(item => {
+                    return (
+                        <Link to={`video/${item.snippet.categoryId}/${item.id}`} key={item.id} className="card">
+                            <img src={item.snippet.thumbnails.medium.url} />
+                            <h2>{item.snippet.title}</h2>
+                            <h3>{item.snippet.channelTitle}</h3>
+                            <p>{converter(item.statistics.viewCount)} views &bull; {} days ago</p>
+                        </Link>
                 )
             })}
         </div>
