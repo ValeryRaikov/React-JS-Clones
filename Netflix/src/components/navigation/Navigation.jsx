@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react';
 
+import { logout } from '../../firebase';
+
 import logo from '../../assets/logo.png';
 import search_icon from '../../assets/search_icon.svg';
 import bell_icon from '../../assets/bell_icon.svg';
@@ -40,7 +42,7 @@ export default function Navigation() {
                     <img className="profile" src={profile_img} alt="" />
                     <img src={dropdown_icon} alt="" />
                     <div className="dropdown">
-                        <p>Sign out of Netflix</p>
+                        <p onClick={() => logout()}>Sign out of Netflix</p>
                     </div>
                 </div>
             </div>

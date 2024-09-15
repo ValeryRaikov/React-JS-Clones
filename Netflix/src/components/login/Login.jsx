@@ -1,9 +1,24 @@
 import { useState } from 'react';
 
+import { login, signup } from '../../firebase';
+
 import logo from '../../assets/logo.png';
 
 export default function Login() {
     const [signState, setSignState] = useState('Sign In');
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const userAuth = async function(e) {
+        e.preventDefault();
+
+        if (signState === 'Sign In') {
+            await login(email, password);
+        } else {
+            await signup(name, email, password);
+        }
+    }
 
     return (
         <div className="login">
@@ -11,10 +26,25 @@ export default function Login() {
             <div className="login-form">
                 <h1>{signState}</h1>
                 <form>
-                    {signState === 'Sign Up' && <input type="text" placeholder="Your Name" />}
-                    <input type="email" placeholder="Your Email" />
-                    <input type="password" placeholder="Password" />
-                    <button>{signState}</button>
+                    {signState === 'Sign Up' && <input 
+                        onChange={(e) => {setName(e.target.value)}} 
+                        value={name} 
+                        type="text" 
+                        placeholder="Your Name" 
+                    />}
+                    <input 
+                        onChange={(e) => {setEmail(e.target.value)}} 
+                        value={email}
+                        type="email" 
+                        placeholder="Your Email" 
+                    />
+                    <input 
+                        onChange={(e) => {setPassword(e.target.value)}} 
+                        value={password} 
+                        type="password" 
+                        placeholder="Password" 
+                    />
+                    <button onClick={userAuth} type="submit">{signState}</button>
                     <div className="form-help">
                         <div className="remember">
                             <input type="checkbox" />
