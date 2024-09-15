@@ -1,3 +1,5 @@
+import { useEffect, useRef } from 'react';
+
 import logo from '../../assets/logo.png';
 import search_icon from '../../assets/search_icon.svg';
 import bell_icon from '../../assets/bell_icon.svg';
@@ -5,8 +7,20 @@ import profile_img from '../../assets/profile_img.png';
 import dropdown_icon from '../../assets/caret_icon.svg';
 
 export default function Navigation() {
+    const navRef = useRef();
+
+    useEffect(() => {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY >= 80) {
+                navRef.current.classList.add('nav-dark');
+            } else {
+                navRef.current.classList.remove('nav-dark');
+            }
+        });
+    }, []);
+
     return (
-        <div className="navigation">
+        <div ref={navRef} className="navigation">
             <div className="navigation-left">
         	    <img src={logo} alt="" />
                 <ul>
