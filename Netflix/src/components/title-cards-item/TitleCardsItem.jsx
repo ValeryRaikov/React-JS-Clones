@@ -1,11 +1,11 @@
 export default function TitleCardsItem({
-    image,
-    name,
+    backdrop_path,
+    original_title,
 }) {
     return (
         <div className="card">
-            <img src={image} alt="" />
-            <p>{name}</p>
+            <img src={`https://image.tmdb.org/t/p/w500${backdrop_path}`} alt="" />
+            <p>{original_title}</p>
         </div>
     );
 }
