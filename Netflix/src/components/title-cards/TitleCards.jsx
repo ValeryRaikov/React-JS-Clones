@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { toast } from 'react-toastify';
 
 import TitleCardsItem from '../title-cards-item/TitleCardsItem';
 
@@ -31,7 +32,10 @@ export default function TitleCards({
         fetch(URL, options)
             .then(response => response.json())
             .then(data => setMovieData(data.results))
-            .catch(err => console.error(err));
+            .catch(error => {
+                console.error(error);
+                toast.error(error.message);
+            });
     }, []);
 
     return (

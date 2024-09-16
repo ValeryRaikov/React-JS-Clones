@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import back_arrow_icon from '../../assets/back_arrow_icon.png';
 
@@ -27,7 +28,10 @@ export default function Player() {
         fetch(URL, options)
         .then(response => response.json())
         .then(data => setMovieData(data.results[0]))
-        .catch(err => console.error(err));
+        .catch(error => {
+            console.error(error);
+            toast.error(error.message);
+        });
     }, []);
 
     return (
