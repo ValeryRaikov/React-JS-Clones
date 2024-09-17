@@ -1,0 +1,23 @@
+.browse-select {
+    padding-top: 30px;
+    padding-left: 65px;
+}
+
+.browse-select select {
+    padding: 10px;
+    border: 1px solid #fff;
+    outline: none;
+    border-radius: 4px;
+    background-color: #000;
+    color: #fff;
+    font-size: 18px;
+}
+
+.text {
+    padding-top: 100px;
+    padding-bottom: 30px;
+}
+
+.text span {
+    color: #ff0000;
+}

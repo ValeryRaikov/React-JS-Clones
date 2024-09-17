@@ -6,12 +6,13 @@ import TitleCardsItem from '../title-cards-item/TitleCardsItem';
 export default function TitleCards({
     title,
     category,
-    type='movie',
+    type,
+    language,
 }) {
     const cardsRef = useRef();
     const [movieData, setMovieData] = useState([]);
 
-    const URL = `https://api.themoviedb.org/3/${type}/${category ? category : 'now_playing'}?language=en-US&page=1`;
+    const URL = `https://api.themoviedb.org/3/${type ? type : 'movie'}/${category ? category : 'now_playing'}?language=${language ? language : 'en-US'}&page=1`;
 
     const options = {
         method: 'GET',
@@ -37,7 +38,7 @@ export default function TitleCards({
                 console.error(error);
                 toast.error(error.message);
             });
-    }, []);
+    }, [type, category, language]);
 
     return (
         <div className="title-cards">

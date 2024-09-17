@@ -28,11 +28,11 @@ export default function Navigation() {
         	    <img src={logo} alt="" />
                 <ul>
                     <Link to='/' >Home</Link>
-                    <Link to="/tv-shows" state={{ category: 'Tv Shows' }}>Tv Shows</Link>
-                    <Link to="/movies" state={{ category: 'Movies' }}>Movies</Link>
-                    <Link to="/new&popular" state={{ category: 'New & Popular' }}>New & Popular</Link>
+                    <Link to='/tv-shows' state={{ category: 'Tv Shows' }}>Tv Shows</Link>
+                    <Link to='/movies' state={{ category: 'Movies' }}>Movies</Link>
+                    <Link to='/new&popular' state={{ category: 'New & Popular' }}>New & Popular</Link>
                     <Link>My List</Link>
-                    <Link>Browse by Languages</Link>
+                    <Link to='/browse'>Browse by Languages</Link>
                 </ul>
             </div>
             <div className="navigation-right">

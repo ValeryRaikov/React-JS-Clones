@@ -1,4 +1,5 @@
 .library {
+    min-height: 100vh;
     padding-top: 25px;
     padding-left: 6%;
     background-image: linear-gradient(#000000b3, #000000b3), url('/background_banner.jpg');
