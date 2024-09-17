@@ -10,6 +10,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import Home from "./components/home/Home";
 import Login from './components/login/Login';
 import Player from './components/player/Player';
+import TvShows from './components/tv-shows/TvShows';
+import Movies from './components/movies/Movies';
+import NewPopular from './components/new-popular/Newpopular';
 
 function App() {
     const navigate = useNavigate();
@@ -31,6 +34,9 @@ function App() {
             <ToastContainer theme='dark' />
             <Routes>
                 <Route path='/' element={<Home />} />
+                <Route path='/tv-shows' element={<TvShows />} />
+                <Route path='/movies' element={<Movies />} />
+                <Route path='/new&popular' element={<NewPopular />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/player/:id' element={<Player />} />
             </Routes>

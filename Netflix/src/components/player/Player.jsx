@@ -36,7 +36,7 @@ export default function Player() {
 
     return (
         <div className="player">
-            <img onClick={() => navigate('/')} src={back_arrow_icon} alt="" />
+            <img onClick={() => navigate(-2)} src={back_arrow_icon} alt="" />
             <iframe 
                 width="90%" 
                 height="90%" 

@@ -26,7 +26,9 @@
     gap: 20px;
 }
 
-.navigation-left ul li {
+.navigation-left ul a {
+    text-decoration: none;
+    color: #e5e5e5;
     cursor: pointer;
 }
 

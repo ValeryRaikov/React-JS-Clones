@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 import { logout } from '../../firebase';
 
@@ -26,12 +27,12 @@ export default function Navigation() {
             <div className="navigation-left">
         	    <img src={logo} alt="" />
                 <ul>
-                    <li>Home</li>
-                    <li>Tv Shows</li>
-                    <li>Movies</li>
-                    <li>New & Popular</li>
-                    <li>My List</li>
-                    <li>Browse by Languages</li>
+                    <Link to='/' >Home</Link>
+                    <Link to="/tv-shows" state={{ category: 'Tv Shows' }}>Tv Shows</Link>
+                    <Link to="/movies" state={{ category: 'Movies' }}>Movies</Link>
+                    <Link to="/new&popular" state={{ category: 'New & Popular' }}>New & Popular</Link>
+                    <Link>My List</Link>
+                    <Link>Browse by Languages</Link>
                 </ul>
             </div>
             <div className="navigation-right">
