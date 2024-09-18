@@ -1,5 +1,6 @@
-import { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import { logout } from '../../firebase';
 
@@ -11,6 +12,33 @@ import dropdown_icon from '../../assets/caret_icon.svg';
 
 export default function Navigation() {
     const navRef = useRef();
+    const navigate = useNavigate();
+    const [searchInput, setSearchInput] = useState(false);
+    const [query, setQuery] = useState('');
+
+    const options = {
+        method: 'GET',
+        headers: {
+            accept: 'application/json',
+            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NDIwNjk5YzQ5NWRmNWE4NjI4OTUxOTIyNjhkOTUyYyIsIm5iZiI6MTcyNjQyMDExNS4wNjgyNSwic3ViIjoiNjZlNzEwY2NlODIxMWVjZDIyYjA5ZGQ4Iiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.02YGEc_ntAMKY-9wmnBBWnMfwHXrt3JpGQNyaXdDNWs'
+        }
+    };
+
+    const URL = `https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=1`;
+
+    const searchHandler = async function() {
+        if (!query) {
+            return;
+        }
+
+        fetch(URL, options)
+            .then(response => response.json())
+            .then(data => navigate('/search', { state: { results: data.results } }))
+            .catch(error => {
+                console.error(error);
+                toast.error(error.message);
+            });
+    }
 
     useEffect(() => {
         window.addEventListener('scroll', () => {
@@ -20,6 +48,8 @@ export default function Navigation() {
                 navRef.current.classList.remove('nav-dark');
             }
         });
+
+        return () => window.removeEventListener('scroll', () => {});
     }, []);
 
     return (
@@ -36,7 +66,19 @@ export default function Navigation() {
                 </ul>
             </div>
             <div className="navigation-right">
-                <img className="icons" src={search_icon} alt="" />
+                {searchInput && 
+                    <div>
+                        <input 
+                            onChange={(e) => setQuery(e.target.value)}
+                            value={query}
+                            type="text" 
+                            placeholder="Search movie" 
+                            className="search-box" 
+                        />
+                        <button onClick={searchHandler} type="submit">Search</button>
+                    </div>
+                }
+                <img onClick={() => setSearchInput(prev => !prev)} className="icons" src={search_icon} alt="" />
                 <p>Children</p>
                 <img className="icons" src={bell_icon} alt="" />
                 <div className="navigation-profile">

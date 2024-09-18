@@ -38,6 +38,27 @@
     gap: 20px;
 }
 
+.navigation-right .search-box {
+    width: 230px;
+    padding: 5px 10px;
+    border: none;
+    border-right: none;
+    outline: none;
+    border-radius: 4px 0 0 4px;
+    font-size: 16px;
+}
+
+.navigation-right button {
+    padding: 5px 10px;
+    border: none;
+    border-left: none; 
+    background-color: #555; 
+    color: #fff;
+    cursor: pointer;
+    border-radius: 0 4px 4px 0; 
+    font-size: 16px;
+}
+
 .navigation-right .icons {
     width: 20px;
     cursor: pointer;

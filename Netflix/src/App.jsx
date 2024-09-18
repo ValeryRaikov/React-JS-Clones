@@ -14,6 +14,7 @@ import TvShows from './components/tv-shows/TvShows';
 import Movies from './components/movies/Movies';
 import NewPopular from './components/new-popular/Newpopular';
 import Browse from './components/browse/Browse';
+import SearchMovie from './components/search-movie/SearchMovie';
 
 function App() {
     const navigate = useNavigate();
@@ -39,6 +40,7 @@ function App() {
                 <Route path='/movies' element={<Movies />} />
                 <Route path='/new&popular' element={<NewPopular />} />
                 <Route path='/browse' element={<Browse />} />
+                <Route path='/search' element={<SearchMovie />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/player/:id' element={<Player />} />
             </Routes>
