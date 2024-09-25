@@ -15,6 +15,7 @@ export default function Player() {
         pause,
         previous,
         next,
+        seek,
     } = useContext(PlayerContext);
 
     return (
@@ -39,7 +40,7 @@ export default function Player() {
                 </div>
                 <div className="flex items-center gap-5">
                     <p>{time.currentTime.minute}:{time.currentTime.second}</p>
-                    <div ref={seekBgColor} className="w-[60vw] max-w-[500px] bg-gray-300 rounded-full cursor-pointer">
+                    <div ref={seekBgColor} onClick={seek} className="w-[60vw] max-w-[500px] bg-gray-300 rounded-full cursor-pointer">
                         <hr ref={seekBar} className="h-1 border-none w-0 bg-green-800 rounded-full"/>
                     </div>
                     <p>{time.totalTime.minute}:{time.totalTime.second}</p>

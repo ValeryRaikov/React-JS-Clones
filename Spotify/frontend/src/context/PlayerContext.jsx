@@ -7,6 +7,7 @@ import { usePause } from "../hooks/usePause";
 import { usePlayWithId } from "../hooks/usePlayWithId";
 import { usePrevious } from "../hooks/usePrevious";
 import { useNext } from "../hooks/useNext";
+import { useSeek } from "../hooks/useSeek";
 
 export const PlayerContext = createContext();
 
@@ -33,6 +34,7 @@ const PlayerContextProvider = (props) => {
     const playWithId = usePlayWithId(audioRef, setTrack, setPlayStatus); 
     const previous = usePrevious(audioRef, track, setTrack, setPlayStatus);
     const next = useNext(audioRef, track, setTrack, setPlayStatus);
+    const seek = useSeek(audioRef, seekBgColor);
 
     useEffect(() => {
         setTimeout(() => {
@@ -67,6 +69,7 @@ const PlayerContextProvider = (props) => {
         playWithId,
         previous,
         next,
+        seek,
     };
 
     return (
