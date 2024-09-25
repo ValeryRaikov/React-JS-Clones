@@ -5,6 +5,8 @@ import { songsData } from "../assets/assets";
 import { usePlay } from "../hooks/usePlay";
 import { usePause } from "../hooks/usePause";
 import { usePlayWithId } from "../hooks/usePlayWithId";
+import { usePrevious } from "../hooks/usePrevious";
+import { useNext } from "../hooks/useNext";
 
 export const PlayerContext = createContext();
 
@@ -29,6 +31,8 @@ const PlayerContextProvider = (props) => {
     const play = usePlay(audioRef, setPlayStatus);
     const pause = usePause(audioRef, setPlayStatus);
     const playWithId = usePlayWithId(audioRef, setTrack, setPlayStatus); 
+    const previous = usePrevious(audioRef, track, setTrack, setPlayStatus);
+    const next = useNext(audioRef, track, setTrack, setPlayStatus);
 
     useEffect(() => {
         setTimeout(() => {
@@ -61,6 +65,8 @@ const PlayerContextProvider = (props) => {
         play,
         pause,
         playWithId,
+        previous,
+        next,
     };
 
     return (
