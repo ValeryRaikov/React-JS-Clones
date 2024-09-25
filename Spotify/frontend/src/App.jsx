@@ -10,6 +10,7 @@ function App() {
                 <Display />
             </div>
             <Player />
+            <audio preload="auto"></audio>
         </div>
     );
 }

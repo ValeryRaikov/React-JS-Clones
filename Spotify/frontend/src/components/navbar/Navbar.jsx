@@ -1,12 +1,16 @@
+import { useNavigate } from "react-router-dom";
+
 import { assets } from "../../assets/assets";
 
 export default function Navbar() {
+    const navigate = useNavigate();
+
     return (
         <>
             <div className="w-full flex justify-between items-center font-semibold">
                 <div className="flex items-center gap-2">
-                    <img src={assets.arrow_left} alt="" className="w-8 bg-black p-2 rounded-2xl cursor-pointer" />
-                    <img src={assets.arrow_right} alt="" className="w-8 bg-black p-2 rounded-2xl cursor-pointer" />
+                    <img onClick={() => navigate(-1)} src={assets.arrow_left} alt="" className="w-8 bg-black p-2 rounded-2xl cursor-pointer" />
+                    <img onClick={() => navigate(1)} src={assets.arrow_right} alt="" className="w-8 bg-black p-2 rounded-2xl cursor-pointer" />
                 </div>
                 <div className="flex items-center gap-4">
                     <p className="bg-white text-black text-[15px] px-4 py-1 rounded-2xl cursor-pointer hidden md:block">
