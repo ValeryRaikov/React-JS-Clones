@@ -11,7 +11,7 @@ export default function ListSong() {
 
     const removeSong = async (id) => {
         try {
-            const response = await axios.delete(`${url}/api/song/remove/`, {
+            const response = await axios.delete(`${url}/api/song/remove`, {
                 data: { id },
             });
 
