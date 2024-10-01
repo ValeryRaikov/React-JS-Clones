@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
 import axios from 'axios';
@@ -51,6 +51,25 @@ export default function AddSong() {
 
         setLoading(false);
     }
+
+    const loadAlbumData = async () => {
+        try {
+            const response = await axios.get(`${url}/api/album/albums`);
+
+            if (!response.data.success) {
+                toast.error('Error loading albums');
+                return;
+            }
+
+            setAlbumData(response.data.albums);
+        } catch (error) {
+            toast.error('Error loading albums');
+        }
+    }
+
+    useEffect(() => {
+        loadAlbumData();
+    }, []);
 
     return ( 
         loading 
@@ -122,6 +141,9 @@ export default function AddSong() {
                             className="bg-transparent outline-green-600border-2 border-gray-400 p-2.5 w-[150px]"
                         >
                             <option value="none">None</option>
+                            {albumData.map(album => (
+                                <option key={album._id} value={album.name}>{album.name}</option>
+                            ))}
                         </select>
                     </div>
                     <button type="submit" className="text-base bg-black text-white px-14 py-2.5 cursor-pointer">
