@@ -7,6 +7,7 @@ import { url } from "../../App";
 
 export default function ListSong() {
     const [data, setData] = useState([]);
+    const [confirmDelete, setConfirmDelete] = useState(null);
 
     const removeSong = async (id) => {
         try {
@@ -41,6 +42,16 @@ export default function ListSong() {
         }
     }
 
+    const removeSongHandler = (id) => {
+        if (confirmDelete === id) {
+            removeSong(id);
+            setConfirmDelete(null);
+        } else {
+            setConfirmDelete(id);
+            toast.info("Click 'Confirm' to remove the song");
+        }
+    }
+
     useEffect(() => {
         fetchSongs();
     }, []);
@@ -57,7 +68,7 @@ export default function ListSong() {
                     <b>Duration</b>
                     <b>Action</b>
                 </div>
-                {data
+                {data.length === 0
                     ? <p className="pt-10 text-center text-3xl">No songs in the database</p>
                     : (
                         data.map(song => {
@@ -67,7 +78,9 @@ export default function ListSong() {
                                     <p>{song.name}</p>
                                     <p>{song.album}</p>
                                     <p>{song.duration}</p>
-                                    <p onClick={() => removeSong(song._id)} className="cursor-pointer font-semibold">X</p>
+                                    <p onClick={() => removeSongHandler(song._id)} className="cursor-pointer font-semibold">
+                                        {confirmDelete === song._id ? "Confirm?" : "X"}
+                                    </p>
                                 </div>
                             )
                         })
