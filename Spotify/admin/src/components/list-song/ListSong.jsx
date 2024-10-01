@@ -27,6 +27,16 @@ export default function ListSong() {
         }
     }
 
+    const removeSongHandler = (id) => {
+        if (confirmDelete === id) {
+            removeSong(id);
+            setConfirmDelete(null);
+        } else {
+            setConfirmDelete(id);
+            toast.info("Click 'Confirm' to remove the song");
+        }
+    }
+
     const fetchSongs = async () => {
         try {
             const response = await axios.get(`${url}/api/song/songs`);
@@ -39,16 +49,6 @@ export default function ListSong() {
             setData(response.data.songs);
         } catch (error) {
             toast.error('Error fetching songs');
-        }
-    }
-
-    const removeSongHandler = (id) => {
-        if (confirmDelete === id) {
-            removeSong(id);
-            setConfirmDelete(null);
-        } else {
-            setConfirmDelete(id);
-            toast.info("Click 'Confirm' to remove the song");
         }
     }
 
@@ -86,7 +86,6 @@ export default function ListSong() {
                         })
                     )
                 }
-                
             </div>
         </div>
     );
