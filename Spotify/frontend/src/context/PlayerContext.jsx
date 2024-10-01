@@ -1,6 +1,6 @@
 import { createContext, useEffect, useRef, useState } from "react";
 
-import { songsData } from "../assets/assets";
+import axios from "axios";
 
 import { usePlay } from "../hooks/usePlay";
 import { usePause } from "../hooks/usePause";
@@ -16,6 +16,10 @@ const PlayerContextProvider = (props) => {
     const seekBgColor = useRef();
     const seekBar = useRef();
 
+    const url = 'http://localhost:3030';
+
+    const [songsData, setSongsData] = useState([]);
+    const [albumsData, setAlbumsData] = useState([]);
     const [track, setTrack] = useState(songsData[0]);
     const [playStatus, setPlayStatus] = useState(false);
     const [time, setTime] = useState({
@@ -31,10 +35,29 @@ const PlayerContextProvider = (props) => {
 
     const play = usePlay(audioRef, setPlayStatus);
     const pause = usePause(audioRef, setPlayStatus);
-    const playWithId = usePlayWithId(audioRef, setTrack, setPlayStatus); 
-    const previous = usePrevious(audioRef, track, setTrack, setPlayStatus);
-    const next = useNext(audioRef, track, setTrack, setPlayStatus);
+    const playWithId = usePlayWithId(songsData, audioRef, setTrack, setPlayStatus); 
+    const previous = usePrevious(songsData, audioRef, track, setTrack, setPlayStatus);
+    const next = useNext(songsData, audioRef, track, setTrack, setPlayStatus);
     const seek = useSeek(audioRef, seekBgColor);
+
+    const getSongsData = async () => {
+        try {
+            const response = await axios.get(`${url}/api/song/songs`);
+            setSongsData(response.data.songs);
+            setTrack(response.data.songs[0]);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    const getAlbumsData = async () => {
+        try {
+            const response = await axios.get(`${url}/api/album/albums`);
+            setAlbumsData(response.data.albums);
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
     useEffect(() => {
         setTimeout(() => {
@@ -57,6 +80,11 @@ const PlayerContextProvider = (props) => {
         }, 1000);
     }, [audioRef]);
 
+    useEffect(() => {
+        getSongsData();
+        getAlbumsData();
+    }, []);
+
     const contextValue = {
         audioRef,
         seekBgColor,
@@ -70,6 +98,8 @@ const PlayerContextProvider = (props) => {
         previous,
         next,
         seek,
+        songsData,
+        albumsData,
     };
 
     return (

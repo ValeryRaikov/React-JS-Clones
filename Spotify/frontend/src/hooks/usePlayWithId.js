@@ -1,11 +1,13 @@
 import { useCallback } from "react";
 
-import { songsData } from "../assets/assets";
-
-export const usePlayWithId = (audioRef, setTrack, setPlayStatus) => {
+export const usePlayWithId = (songsData, audioRef, setTrack, setPlayStatus) => {
     const playWithId = useCallback(async (id) => {
         await new Promise((resolve) => {
-            setTrack(songsData[id]);
+            songsData.map(song => {
+                if (id === song._id) {
+                    setTrack(song);
+                }
+            });
             resolve();
         });
 
@@ -13,7 +15,7 @@ export const usePlayWithId = (audioRef, setTrack, setPlayStatus) => {
             audioRef.current.play();
             setPlayStatus(true);
         }
-    }, [audioRef, setTrack, setPlayStatus]);
+    }, [songsData, audioRef, setTrack, setPlayStatus]);
 
     return playWithId;
 };
