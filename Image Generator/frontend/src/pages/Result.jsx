@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { assets } from "../assets/assets";
+import { motion } from "framer-motion";
 
 export default function Result() {
     const [image, setImage] = useState(assets.sample_img_1);
@@ -12,7 +13,12 @@ export default function Result() {
     }
 
     return (
-        <form onSubmit={submitHandler} className="flex flex-col min-h-[90vh] justify-center items-center">
+        <motion.form onSubmit={submitHandler} className="flex flex-col min-h-[90vh] justify-center items-center"
+            initial={{ opacity: 0.2, y: 100 }}
+            transition={{ duration: 1 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+        >
         <div>
             <div className="relative">
                 <img src={image} className="max-w-sm rounded" />
@@ -44,6 +50,6 @@ export default function Result() {
                 <a href={image} download className="bg-zinc-900 px-10 py-3 rounded-full cursor-pointer">Download</a>
             </div>
         }
-        </form>
+        </motion.form>
     );
 }
