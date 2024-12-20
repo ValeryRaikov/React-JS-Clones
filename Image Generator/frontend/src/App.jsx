@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { Route, Routes } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
 
 import { AppContext } from "./context/AppContext";
 import BuyCredit from "./pages/BuyCredit";
@@ -14,6 +15,7 @@ function App() {
 
     return (
         <div className="px-4 sm:px-10 md:px-14 lg:px-28 min-h-screen bg-gradient-to-b from-teal-50 to to-orange-50">
+            <ToastContainer position="bottom-right" />
             <Navbar />
             {showLogin && <Login />}
             <Routes>
