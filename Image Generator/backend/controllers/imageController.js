@@ -14,7 +14,7 @@ export const generateImage = async (req, res) => {
             return res.json({success: false, message: "Missing details."});
         }
 
-        if (user.creditBalance < 0 || userModel.creditBalance < 0) {
+        if (user.creditBalance === 0 || userModel.creditBalance < 0) {
             return res.json({success: false, message: "No credit balance.", creditBalance: userModel.creditBalance});
         }
 
@@ -24,7 +24,7 @@ export const generateImage = async (req, res) => {
         const { data } = await axios.post(BASE_URL, formData, {
             headers: {
                 'x-api-key': process.env.CLIPDROP_API,
-                'content-type': 'multipart/form-data',
+                'Content-Type': 'multipart/form-data',
             },
             responseType: "arraybuffer",
         });
